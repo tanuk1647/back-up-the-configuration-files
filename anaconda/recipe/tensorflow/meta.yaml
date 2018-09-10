@@ -1,0 +1,51 @@
+package:
+  name: tensorflow
+  version: "1.9.0"
+
+build:
+  number: 0
+  entry_points:
+    - freeze_graph = tensorflow.python.tools.freeze_graph:run_main
+    - toco_from_protos = tensorflow.contrib.lite.toco.python.toco_from_protos:main
+    - tflite_convert = tensorflow.contrib.lite.python.tflite_convert:main
+    - toco = tensorflow.contrib.lite.python.tflite_convert:main
+    - saved_model_cli = tensorflow.python.tools.saved_model_cli:main
+
+requirements:
+  build:
+    - python
+    - pip
+  run:
+    - python
+    - absl-py >=0.1.6
+    - astor >=0.6.0
+    - gast >=0.2.0
+    - numpy >=1.13.3
+    - six >=1.10.0
+    - protobuf >=3.4.0
+    - tensorboard 1.9.*
+    - termcolor >=1.1.0
+    - grpcio >=1.8.6
+
+test:
+  imports:
+    - tensorflow
+  commands:
+    - tensorboard --help | grep USAGE
+    - freeze_graph --help
+    - toco_from_protos --help
+    - toco --help
+    - saved_model_cli --help 
+
+about:
+  home: http://tensorflow.org/
+  license: Apache 2.0
+  license_family: Apache
+  summary: TensorFlow is a machine learning library, base package contains only tensorflow.
+  description: |
+    TensorFlow provides multiple APIs.The lowest level API, TensorFlow Core
+    provides you with complete programming control.
+    Base package contains only tensorflow, not tensorflow-tensorboard.
+  dev_url: https://github.com/tensorflow/tensorflow
+  doc_url: https://www.tensorflow.org/get_started/get_started
+  doc_source_url: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/docs_src
